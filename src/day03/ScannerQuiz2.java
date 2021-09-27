@@ -11,6 +11,5 @@ public class ScannerQuiz2 {
         String food = money >= 5000 ? "김치찌개" : money >= 2500 ? "라면" : "굶어!";
         System.out.println("선택된 음식 : " + food);
 
-
     }
 }

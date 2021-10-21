@@ -1,20 +1,31 @@
 package day06;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Roulette {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("게임 인원 (2 ~ 4명) ==> ");
 
-        // 총 참여 인원 수
-        int playerNum = sc.nextInt();
+        int playerNum = 0;
 
-        // 인원 수의 범위 확인
-        if (playerNum < 2 || playerNum > 4) {
-            System.out.println("인원수가 올바르지 않습니다. GAME OVER!");
-            return;
+        while (true) {
+            try {
+                System.out.print("게임 인원 (2 ~ 4명) ==> ");
+                // 총 참여 인원 수
+                playerNum = sc.nextInt();
+
+                // 인원 수의 범위 확인
+                if (playerNum < 2 || playerNum > 4) {
+                    System.out.println("인원수가 올바르지 않습니다!");
+                    continue;
+                }
+                break;
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("올바른 정수를 입력하세요!(2 ~ 4명)");
+            }
         }
 
         // 플레이어 이름 작성
@@ -30,9 +41,17 @@ public class Roulette {
 
         // 참여 인원 이름 출력
         System.out.print(Arrays.toString(players) + " 참가!");
-        System.out.print("\n실탄 개수 (6미만) ==> ");
-        int bulletNum = sc.nextInt();
-        sc.nextLine();
+        int bulletNum = 0;
+        while (true) {
+            try {
+                System.out.print("\n실탄 개수 (6미만) ==> ");
+                bulletNum = sc.nextInt();
+                sc.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("실탄 개수는 정수로 6미만입니다.");
+            }
+        }
 
         // 탄창 배열을 생성 (공간 6개)
         boolean[] magazine = new boolean[6];
